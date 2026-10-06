@@ -1,12 +1,15 @@
 import uvicorn
 from fastapi import FastAPI
 
-app = FastAPI()
+from whiteboard.api import router as board_router
+
+app = FastAPI(title="whiteboard-collab-service")
+app.include_router(board_router)
 
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"service": "whiteboard-collab", "status": "ok"}
 
 
 if __name__ == "__main__":
